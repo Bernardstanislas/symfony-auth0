@@ -1,0 +1,15 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        auth0:
+            id:
+                auth0_user_provider
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: ^/
+            stateless: true
+            simple_preauth:
+                authenticator: jwt_auth.jwt_authenticator

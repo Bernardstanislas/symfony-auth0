@@ -23,8 +23,13 @@ services:
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
-        resource: '../src/Controller'
+        resource: '../src/Application/Controller'
+        namespace: App\Application\Controller\
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    auth0_user_provider:
+        class: App\Application\Security\UserProvider
+        arguments: ["@jwt_auth.auth0_service"]
